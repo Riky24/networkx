@@ -158,6 +158,7 @@ def bfs_edges(G, source, reverse=False, depth_limit=None, sort_neighbors=None):
     edge_bfs
 
     """
+    print('versione modificata')
     if reverse and G.is_directed():
         successors = G.predecessors
     else:
