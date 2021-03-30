@@ -69,8 +69,7 @@ def generic_bfs_edges(G, source, neighbors=None, depth_limit=None, sort_neighbor
         _neighbors = neighbors
         neighbors = lambda node: iter(sort_neighbors(_neighbors(node)))
 
-    visited = {source}
-    h = [source]
+    visited = [source]  #trasformo visited in una lista per mantenere l'ordinamento
     if depth_limit is None:
         depth_limit = len(G)
     queue = deque([(source, depth_limit, neighbors(source))])
@@ -80,13 +79,12 @@ def generic_bfs_edges(G, source, neighbors=None, depth_limit=None, sort_neighbor
             child = next(children)
             if child not in visited:
                 yield parent, child
-                visited.add(child)
-                h.append(child)
+                visited.append(child)
                 if depth_now > 1:
                     queue.append((child, depth_now - 1, neighbors(child)))
         except StopIteration:
             queue.popleft()
-    print(h)
+    print(visited)  #stampo la lista dei nodi visitati
 
 
 def bfs_edges(G, source, reverse=False, depth_limit=None, sort_neighbors=None):
