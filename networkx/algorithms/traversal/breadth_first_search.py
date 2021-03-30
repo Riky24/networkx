@@ -78,13 +78,13 @@ def generic_bfs_edges(G, source, neighbors=None, depth_limit=None, sort_neighbor
         try:
             child = next(children)
             if child not in visited:
-                print(child)
                 yield parent, child
                 visited.add(child)
                 if depth_now > 1:
                     queue.append((child, depth_now - 1, neighbors(child)))
         except StopIteration:
             queue.popleft()
+    print(visited)
 
 
 def bfs_edges(G, source, reverse=False, depth_limit=None, sort_neighbors=None):
@@ -158,7 +158,6 @@ def bfs_edges(G, source, reverse=False, depth_limit=None, sort_neighbors=None):
     edge_bfs
 
     """
-    print('versione modificata')
     if reverse and G.is_directed():
         successors = G.predecessors
     else:
